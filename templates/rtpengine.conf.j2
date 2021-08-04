@@ -1,0 +1,16 @@
+[rtpengine]
+
+### a single interface:
+# interface = 123.234.345.456
+### separate multiple interfaces with semicolons:
+# interface = internal/12.23.34.45;external/23.34.45.54
+### for different advertised address:
+# interface = 12.23.34.45!23.34.45.56
+
+table           = 0
+listen-ng       = 127.0.0.1:2223
+timeout         = 60
+silent-timeout  = 3600
+tos             = 184
+port-min        = 16384
+port-max        = 32768

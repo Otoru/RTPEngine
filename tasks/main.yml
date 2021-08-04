@@ -1,0 +1,18 @@
+---
+- name: Debian Setup
+  include: debian.yml
+  when: ansible_facts['os_family'] | lower == 'debian'
+
+- name: Install bcg729
+  include: bcg729.yml
+  when: "packages.bcg729 | intersect(ansible_facts.packages) | length != 3"
+
+- name: Install rtpengine
+  include: rtpengine.yml
+  when: "packages.rtpengine | intersect(ansible_facts.packages) | length != 6"
+
+- name: Cleanup build files
+  include: clean.yml
+
+- name: Apply minimal settings in rtpengine instance
+  include: settings.yml

@@ -1,0 +1,56 @@
+---
+packages:
+  bcg729:
+    - libbcg729-0
+    - libbcg729-0-dbg
+    - libbcg729-dev
+  rtpengine:
+    - ngcp-rtpengine
+    - ngcp-rtpengine-daemon
+    - ngcp-rtpengine-iptables
+    - ngcp-rtpengine-kernel-dkms
+    - ngcp-rtpengine-recording-daemon
+    - ngcp-rtpengine-utils
+
+dependencies:
+  - git
+  - dkms
+  - "linux-headers-{{ ansible_kernel }}"
+  - dpkg-dev
+  - cmake
+  - unzip
+  - wget
+  - debhelper-compat
+  - default-libmysqlclient-dev
+  - gperf
+  - iptables-dev
+  - libavcodec-dev
+  - libavfilter-dev
+  - libavformat-dev
+  - libavutil-dev
+  - libbencode-perl
+  - libcrypt-openssl-rsa-perl
+  - libcrypt-rijndael-perl
+  - libcurl4-openssl-dev
+  - libdigest-crc-perl
+  - libdigest-hmac-perl
+  - libevent-dev
+  - libglib2.0-dev
+  - libhiredis-dev
+  - libio-multiplex-perl
+  - libio-socket-inet6-perl
+  - libiptc-dev
+  - libjson-glib-dev
+  - libnet-interface-perl
+  - libpcap0.8-dev
+  - libpcre3-dev
+  - libsocket6-perl
+  - libspandsp-dev
+  - libssl-dev
+  - libswresample-dev
+  - libsystemd-dev
+  - libxmlrpc-core-c3-dev
+  - markdown
+  - curl
+  - zlib1g-dev
+  - libwebsockets-dev

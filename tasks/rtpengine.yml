@@ -1,0 +1,22 @@
+- name: Download rtpengine source code
+  git:
+    repo: "{{ rtpengine.repository }}"
+    dest: /usr/src/rtpengine/
+    version: "{{ rtpengine.version }}"
+    accept_hostkey: yes
+
+- name: Build rtpengine package
+  command: dpkg-buildpackage -b -uc -us
+  args:
+    chdir: /usr/src/rtpengine/
+
+- include_tasks: install.yml
+  loop:
+    - "*ngcp-rtpengine-daemon_*.deb"
+    - "*ngcp-rtpengine-recording-daemon_*.deb"
+    - "*ngcp-rtpengine-utils_*.deb"
+    - "*ngcp-rtpengine-iptables_*.deb"
+    - "*ngcp-rtpengine-kernel-dkms_*.deb"
+    - "*ngcp-rtpengine_*.deb"
+  loop_control:
+    loop_var: pattern

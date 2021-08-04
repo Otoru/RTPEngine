@@ -1,0 +1,22 @@
+- name: Edit enviroment variables
+  lineinfile:
+    path: /etc/default/ngcp-rtpengine-daemon
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - regexp: "^RUN_RTPENGINE"
+      line: RUN_RTPENGINE=yes
+
+- name: Verify if settings file exists
+  stat:
+    path: /etc/rtpengine/rtpengine.conf
+  register: settings
+
+- name: Create configuration file (if necessary)
+  template:
+    src: rtpengine.conf.j2
+    dest: /etc/rtpengine/rtpengine.conf
+  when: not settings.stat.exists
+  notify:
+    - RTPEngine enable
+    - RTPEngine restart

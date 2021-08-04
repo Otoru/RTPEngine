@@ -1,0 +1,13 @@
+- name: Get generated packages
+  find:
+    paths:
+      - /usr/src
+    patterns:
+      - "{{ pattern }}"
+  register: files
+
+- name: Install generated packages
+  apt:
+    deb: "{{ item }}"
+  when: "files.files | length > 0"
+  loop: "{{ files.files | map(attribute='path') | sort }}"

@@ -1,0 +1,7 @@
+---
+  rtpengine:
+    version: mr9.2.1
+    repository: https://github.com/sipwise/rtpengine.git
+    bcg729:
+      source: https://codeload.github.com/BelledonneCommunications/bcg729/tar.gz/1.0.4
+      debian: https://github.com/ossobv/bcg729-deb.git

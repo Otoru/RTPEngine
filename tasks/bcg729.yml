@@ -1,0 +1,44 @@
+- name: Download BCG729 Source Code
+  get_url:
+    url: "{{ rtpengine.bcg729.source }}"
+    dest: /usr/src/bcg729.tar.gz
+    force: true
+
+- name: Creating Destination Folder
+  file:
+    path: /usr/src/bcg729/
+    state: directory
+
+- name: Unzipping package
+  unarchive:
+    src: /usr/src/bcg729.tar.gz
+    dest: /usr/src/bcg729/
+    remote_src: true
+    extra_opts:
+      - "--strip-components"
+      - "1"
+
+- name: Removing Compressed File
+  file:
+    path: /usr/src/bcg729.tar.gz
+    state: absent
+
+- name: Download bcg729-deb
+  git:
+    repo: "{{ rtpengine.bcg729.debian }}"
+    dest: /usr/src/bcg729/debian/
+    accept_hostkey: yes
+
+- name: Build bcg729
+  command: dpkg-buildpackage -us -uc -sa -b -rfakeroot
+  args:
+    chdir: /usr/src/bcg729/
+
+
+- include_tasks: install.yml
+  loop:
+    - "*libbcg729-0_*.deb"
+    - "*libbcg729-0-dbg*.deb"
+    - "*libbcg729-dev*.deb"
+  loop_control:
+    loop_var: pattern

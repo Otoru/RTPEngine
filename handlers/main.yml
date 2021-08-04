@@ -1,0 +1,10 @@
+---
+- name: RTPEngine enable
+  service:
+    name: rtpengine
+    enabled: yes
+
+- name: RTPEngine restart
+  service:
+    name: rtpengine
+    state: restarted

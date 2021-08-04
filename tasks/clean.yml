@@ -1,0 +1,18 @@
+- name: Identify all files in src directory
+  find:
+    paths:
+      - /usr/src
+    use_regex: yes
+    file_type: file
+    patterns:
+      - "^bcg729*"
+      - "^libbcg729*"
+      - "^ngcp-rtpengine*"
+  register: build
+
+- name: Remove build files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  when: "build.files | length > 0"
+  loop: "{{ build.files }}"
