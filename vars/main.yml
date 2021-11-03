@@ -16,6 +16,7 @@ dependencies:
   - git
   - dkms
   - "linux-headers-{{ ansible_kernel }}"
+  - build-essential
   - dpkg-dev
   - cmake
   - unzip
