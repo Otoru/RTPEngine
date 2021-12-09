@@ -55,3 +55,7 @@ dependencies:
   - curl
   - zlib1g-dev
   - libwebsockets-dev
+  - nfs-common
+  - libmosquitto-dev
+  - python3-websockets
+  - libconfig-tiny-perl
